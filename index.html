@@ -44,7 +44,7 @@
                 <h1>Be in the right place when it fires.</h1>
                 <p class="hero-subheading">Four fixed-date surf trips across Europe and North Africa, built entirely around swell timing and positioning.</p>
                 <p class="hero-authority">15+ years reading forecasts and positioning surfers across France, Portugal, and Morocco.</p>
-                <a href="#" class="cta-button request-call-btn">Request a call →</a>
+                <a href="#" class="cta-button request-call-btn">Request a 15-minute call</a>
             </div>
         </div>
     </section>
@@ -298,10 +298,10 @@
     <section class="next-step-section" id="next-step">
         <div class="container-narrow">
             <h2>Next Step</h2>
-            <p>These trips are limited to 3–4 people per week. Each is priced at €2,500 per person—positioned as high-end surf guiding, not surf camps.</p>
+            <p>These trips are limited to 3–4 people per week. This is a premium, forecast-led guiding service, not a standard group trip. Each is priced at €2,500 per person—positioned as high-end surf guiding, not surf camps.</p>
             <p>If you're interested in one of the fixed dates, request a brief call. We'll discuss your experience level, expectations, and whether the timing works.</p>
             <p style="margin-bottom: 3rem;">No pressure. Just clarity.</p>
-            <a href="#" class="cta-button-inverse request-call-btn">Request a call →</a>
+            <a href="#" class="cta-button-inverse request-call-btn">Request a 15-minute call</a>
         </div>
     </section>
 
@@ -314,9 +314,18 @@
     <!-- Footer -->
     <footer>
         <div class="social-icons">
-            <a href="https://wa.me/4917663431659" target="_blank" aria-label="WhatsApp"><img src="img/icons/whatsapp.svg" alt="WhatsApp"></a>
-            <a href="https://instagram.com/african.surfer" target="_blank" aria-label="Instagram"><img src="img/icons/instagram.svg" alt="Instagram"></a>
-            <a href="mailto:elmadbouh@yahoo.com" aria-label="Email"><img src="img/icons/email.svg" alt="Email"></a>
+            <a href="https://instagram.com/african.surfer" target="_blank" aria-label="Instagram" class="social-link">
+                <img src="img/icons/instagram.svg" alt="Instagram">
+                <span class="social-label">Recent surf windows</span>
+            </a>
+            <a href="https://wa.me/4917663431659" target="_blank" aria-label="WhatsApp" class="social-link">
+                <img src="img/icons/whatsapp.svg" alt="WhatsApp">
+                <span class="social-label">DM for details</span>
+            </a>
+            <a href="mailto:elmadbouh@yahoo.com" aria-label="Email" class="social-link">
+                <img src="img/icons/email.svg" alt="Email">
+                <span class="social-label">Request a call</span>
+            </a>
         </div>
         <div class="footer-logo">
             <img src="img/logo.svg" alt="African Surfer Logo">
@@ -324,31 +333,7 @@
         <p>© 2024 African Surfer. All rights reserved.</p>
     </footer>
 
-    <!-- Subscription Popup -->
-    <div id="popup-overlay" class="popup-overlay">
-        <div id="popup" class="popup">
-            <span id="close-popup" class="close-popup">&times;</span>
-            <h2>Get on the list</h2>
-            <p>Be the first to know about new trips and availability.</p>
-            <form id="subscribe-form" action="https://formspree.io/f/YOUR_SUBSCRIBE_FORM_ID" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="number" name="age" placeholder="Age" required>
-                <input type="text" name="country" placeholder="Country" required>
-                <select name="surf-level" required>
-                    <option value="" disabled selected>Surf Level</option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                </select>
-                <input type="email" name="email" placeholder="Email" required>
-                <button type="submit" class="cta-button">Subscribe</button>
-            </form>
-            <div class="success-message" style="display: none;">
-                <h3>Thank you for subscribing!</h3>
-                <p>We'll keep you updated on new trips and availability.</p>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Request a Call Popup -->
     <div id="request-call-popup-overlay" class="popup-overlay">
@@ -358,17 +343,8 @@
             <p>Leave your details and we'll get back to you shortly.</p>
             <form id="request-call-form" action="https://formspree.io/f/YOUR_REQUEST_CALL_FORM_ID" method="POST">
                 <input type="text" name="name" placeholder="Name" required>
-                <input type="number" name="age" placeholder="Age" required>
-                <select name="gender" required>
-                    <option value="" disabled selected>Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-                <input type="text" name="location" placeholder="Where are you based?" required>
-                <input type="tel" name="phone" placeholder="Phone Number" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="How do you want to be approached?" rows="4" required></textarea>
-                <button type="submit" class="cta-button">Submit</button>
+                <input type="text" name="contact" placeholder="Email or WhatsApp Number" required>
+                <button type="submit" class="cta-button">Request a 15-minute call</button>
             </form>
             <div class="success-message" style="display: none;">
                 <h3>Thank you for your request!</h3>

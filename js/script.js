@@ -21,8 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show the first slide initially
         showSlide(currentSlide);
     });
-
-    // --- Formspree Integration --- //
     async function handleFormSubmit(form, successMessage) {
         try {
             const response = await fetch(form.action, {
@@ -50,38 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- Subscription Popup --- //
-    const popupOverlay = document.getElementById('popup-overlay');
-    const closePopupButton = document.getElementById('close-popup');
-    const subscribeForm = document.getElementById('subscribe-form');
-    const subscribeSuccessMessage = document.querySelector('#popup-overlay .success-message');
 
-    // Show the subscription popup after 5 seconds
-    setTimeout(() => {
-        if (popupOverlay.style.display !== 'flex') {
-            popupOverlay.style.display = 'flex';
-        }
-    }, 5000);
-
-    // Close the subscription popup
-    function closeSubscribePopup() {
-        popupOverlay.style.display = 'none';
-        subscribeForm.style.display = 'block';
-        subscribeSuccessMessage.style.display = 'none';
-    }
-
-    closePopupButton.addEventListener('click', closeSubscribePopup);
-    popupOverlay.addEventListener('click', (e) => {
-        if (e.target === popupOverlay) {
-            closeSubscribePopup();
-        }
-    });
-
-    // Handle subscription form submission
-    subscribeForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        await handleFormSubmit(subscribeForm, subscribeSuccessMessage);
-    });
 
     // --- Request a Call Popup --- //
     const requestCallPopupOverlay = document.getElementById('request-call-popup-overlay');
