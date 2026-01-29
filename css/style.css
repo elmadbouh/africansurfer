@@ -1,0 +1,791 @@
+@charset "UTF-8";
+/* ============================================
+   PREMIUM SURF LANDING PAGE STYLESHEET
+   Minimal, editorial, timeless
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #ffffff;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #2a2a2a;
+}
+
+strong {
+    font-weight: 500;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ============================================
+   LAYOUT CONTAINERS
+   ============================================ */
+
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+}
+
+.container-narrow {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+}
+
+/* ============================================
+   SECTION STRUCTURE
+   ============================================ */
+
+section {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.section-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #707070;
+    margin-bottom: 2.5rem;
+}
+
+/* ============================================
+   IMAGE DIVIDERS
+   ============================================ */
+
+.image-divider {
+    width: 100%;
+    height: 480px;
+    background-size: cover;
+    background-position: center center;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.hero-image {
+    width: 100%;
+    height: 70vh;
+    min-height: 540px;
+    max-height: 800px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.12), rgba(0,0,0,0.32));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: #ffffff;
+    max-width: 720px;
+    padding: 0 1.5rem;
+}
+
+.hero h1 {
+    font-size: 3.25rem;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    line-height: 1.15;
+}
+
+.hero-subheading {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.96);
+}
+
+.hero-authority {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 2.75rem;
+}
+
+/* ============================================
+   BUTTONS & CTA
+   ============================================ */
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.cta-button:hover {
+    background: #f5f5f5;
+}
+
+.cta-button-inverse {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.cta-button-inverse:hover {
+    background: #f5f5f5;
+}
+
+/* ============================================
+   PROBLEM / INSIGHT SECTION
+   ============================================ */
+
+.problem-section {
+    background: #ffffff;
+}
+
+.problem-section h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1.75rem;
+    line-height: 1.3;
+    color: #1a1a1a;
+}
+
+.problem-section p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   APPROACH SECTION
+   ============================================ */
+
+.approach-section {
+    background: #fafafa;
+}
+
+.approach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-top: 2.5rem;
+}
+
+.approach-item h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.875rem;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+}
+
+.approach-item p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: #404040;
+}
+
+/* ============================================
+   EXPERIENCES SECTION
+   ============================================ */
+
+.experiences-section {
+    background: #ffffff;
+}
+
+.experience {
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.experience:hover {
+    border-color: #c0c0c0;
+}
+
+.experience-image {
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.experience-content {
+    padding: 2.75rem;
+}
+
+.experience-header {
+    margin-bottom: 1.5rem;
+}
+.experience-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.02em;
+}
+
+.experience-duration {
+    font-size: 0.875rem;
+    color: #707070;
+    font-weight: 400;
+}
+
+.experience-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #2a2a2a;
+    margin-bottom: 1.75rem;
+}
+
+.experience-details {
+    list-style: none;
+    margin-bottom: 1.75rem;
+}
+
+.experience-details li {
+    font-size: 0.9375rem;
+    color: #404040;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.experience-details li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #a0a0a0;
+}
+
+.experience-footer {
+    font-size: 0.875rem;
+    color: #707070;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* ============================================
+   WHAT'S INCLUDED SECTION
+   ============================================ */
+
+.included-section {
+    background: #fafafa;
+}
+
+.included-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+}
+
+.included-column h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+}
+
+.included-list {
+    list-style: none;
+}
+
+.included-list li {
+    font-size: 0.9375rem;
+    color: #404040;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.875rem;
+    line-height: 1.65;
+}
+
+.included-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #a0a0a0;
+}
+
+/* ============================================
+   ABOUT THE GUIDE SECTION
+   ============================================ */
+
+.about-section {
+    background: #fafafa;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+    align-items: start;
+}
+
+.about-image {
+    width: 100%;
+    /* height: 480px; */ /* Removed height to let image dictate aspect ratio */
+    /* background-size: cover;
+    background-position: center center;
+    border: 1px solid #e8e8e8; */ /* Removed background styles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add some padding around the image */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: rotate(-3deg);
+    border: none; /* Remove previous border */
+}
+
+.guide-profile-img {
+    width: 100%; /* Make image fill its container */
+    max-width: 320px; /* Max size for the circular image */
+    height: auto;
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio for circular shape */
+    border-radius: 2px; /* Small border-radius for polaroid look */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    /* border: 1px solid #e8e8e8; */ /* No border for polaroid effect, shadow is enough */
+}
+
+.about-content h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.75rem;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+.about-content p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #2a2a2a;
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   WHO THIS IS FOR SECTION
+   ============================================ */
+
+.who-section {
+    background: #ffffff;
+}
+
+.who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+}
+
+.who-column h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+}
+
+.who-column p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #404040;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   NEXT STEP SECTION
+   ============================================ */
+
+.next-step-section {
+    background: #1a1a1a;
+    color: #ffffff;
+    text-align: center;
+    border-bottom: none;
+}
+
+.next-step-section h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.next-step-section p {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 1.5rem;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+    background: #ffffff;
+    border-top: 1px solid #e8e8e8;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.875rem;
+    color: #707070;
+}
+
+footer a {
+    color: #1a1a1a;
+    border-bottom: none;
+    transition: border-color 0.15s ease;
+}
+
+footer a:hover {
+    border-bottom-color: #1a1a1a;
+}
+
+.social-icons {
+    margin-bottom: 1.5rem; /* Space between icons and copyright */
+}
+
+.social-icons a {
+    margin: 0 10px; /* Space between icons */
+    display: inline-block;
+    text-decoration: none; /* Remove underline from links */
+    border-bottom: none; /* Remove underline from links */
+}
+
+.social-icons img {
+    width: 30px; /* Adjust icon size as needed */
+    height: 30px;
+    vertical-align: middle;
+}
+
+.footer-logo {
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+    height: 50px;
+}
+
+/* ============================================
+   SLIDER
+   ============================================ */
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: none;
+}
+
+/* ============================================
+   POPUP
+   ============================================ */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.popup h2 {
+    margin-bottom: 1rem;
+}
+
+.popup p {
+    margin-bottom: 1.5rem;
+}
+
+#subscribe-form input,
+#subscribe-form select,
+#request-call-form input,
+#request-call-form select,
+#request-call-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+}
+
+#subscribe-form button,
+#request-call-form button {
+    width: 100%;
+    padding: 1rem;
+    background: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#subscribe-form button:hover,
+#request-call-form button:hover {
+    background: #333;
+}
+
+.success-message {
+    text-align: center;
+}
+
+/* ============================================
+   COOKIE CONSENT BANNER
+   ============================================ */
+
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1001;
+    display: none; /* Initially hidden */
+}
+
+.cookie-consent-banner p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.cookie-consent-banner .cta-button {
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 0.5rem 1rem;
+}
+
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 320px 1fr;
+        gap: 3rem;
+    }
+    
+    .about-image {
+        height: 420px;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .container,
+    .container-narrow {
+        padding: 3.5rem 1.25rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+    
+    .hero-subheading {
+        font-size: 1rem;
+    }
+    
+    .hero-authority {
+        font-size: 0.875rem;
+    }
+    
+    .image-divider {
+        height: 320px;
+    }
+    
+    .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .experience-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .experience-image {
+        height: 280px;
+    }
+
+    .slider {
+        height: 280px;
+    }
+    
+    .included-grid,
+    .who-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-image {
+        height: 360px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        height: 60vh;
+        min-height: 480px;
+    }
+    
+    .hero h1 {
+        font-size: 1.875rem;
+    }
+    
+    .image-divider {
+        height: 280px;
+    }
+    
+    .cta-button,
+    .cta-button-inverse {
+        padding: 0.875rem 2rem;
+        font-size: 0.875rem;
+    }
+    
+    .experience-content {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .slider {
+        height: 220px;
+    }
+}
