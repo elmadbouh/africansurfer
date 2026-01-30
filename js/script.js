@@ -22,7 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
         showSlide(currentSlide);
     });
     async function handleFormSubmit(form, successMessage) {
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        
         try {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
             const response = await fetch(form.action, {
                 method: form.method,
                 body: new FormData(form),
@@ -35,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
             } else {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
                 response.json().then(data => {
                     if (Object.hasOwn(data, 'errors')) {
                         alert(data["errors"].map(error => error["message"]).join(", "));
@@ -44,6 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         } catch (error) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
             alert('An error occurred. Please try again.');
         }
     }
