@@ -1,4 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- Trip Availability Data --- //
+    const tripAvailability = {
+        france: {
+            title: "September – Southwest France & North Spain",
+            weeks: [
+                { dates: "Sep 5–12, 2026", spots: 3 },
+                { dates: "Sep 12–19, 2026", spots: 2 },
+                { dates: "Sep 19–26, 2026", spots: 0 }
+            ]
+        },
+        portugal: {
+            title: "October – Portugal",
+            weeks: [
+                { dates: "Oct 3–10, 2026", spots: 4 },
+                { dates: "Oct 10–17, 2026", spots: 3 },
+                { dates: "Oct 17–24, 2026", spots: 1 }
+            ]
+        },
+        morocco_dec: {
+            title: "December – Morocco",
+            weeks: [
+                { dates: "Dec 5–12, 2026", spots: 2 },
+                { dates: "Dec 12–19, 2026", spots: 4 }
+            ]
+        },
+        morocco_jan: {
+            title: "January – Morocco",
+            weeks: [
+                { dates: "Jan 9–16, 2027", spots: 3 },
+                { dates: "Jan 16–23, 2027", spots: 4 }
+            ]
+        }
+    };
+
+    // --- Image Sliders --- //
     const sliders = document.querySelectorAll('.slider');
 
     sliders.forEach(slider => {
@@ -21,6 +57,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show the first slide initially
         showSlide(currentSlide);
     });
+
+    // --- Experiences Horizontal Slider --- //
+    const experiencesTrack = document.querySelector('.experiences-track');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (experiencesTrack && prevBtn && nextBtn) {
+        const scrollAmount = 400;
+        
+        prevBtn.addEventListener('click', () => {
+            experiencesTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            experiencesTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    }
+
+    // --- Form Submit Handler --- //
     async function handleFormSubmit(form, successMessage) {
         const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
@@ -58,14 +113,156 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // --- Week Selection Popup --- //
+    const weekPopupOverlay = document.getElementById('week-select-popup-overlay');
+    const weekPopupTitle = document.getElementById('week-popup-title');
+    const weekOptionsContainer = document.getElementById('week-options');
+    const requestWeekBtn = document.getElementById('request-week-btn');
+    const closeWeekPopupBtn = document.getElementById('close-week-popup');
+    const selectWeekButtons = document.querySelectorAll('.select-week-btn');
+    
+    // Week Form Popup
+    const weekFormPopupOverlay = document.getElementById('week-form-popup-overlay');
+    const weekFormSummary = document.getElementById('week-form-summary');
+    const weekFormTripInput = document.getElementById('week-form-trip');
+    const weekFormWeekInput = document.getElementById('week-form-week');
+    const closeWeekFormPopupBtn = document.getElementById('close-week-form-popup');
+    const weekRequestForm = document.getElementById('week-request-form');
+    const weekFormSuccessMessage = document.querySelector('#week-form-popup .success-message');
+    
+    let selectedTrip = null;
+    let selectedWeek = null;
 
+    // Open week selection popup
+    selectWeekButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tripId = button.dataset.trip;
+            const trip = tripAvailability[tripId];
+            
+            if (!trip) return;
+            
+            selectedTrip = trip.title;
+            selectedWeek = null;
+            
+            // Update popup title
+            weekPopupTitle.textContent = trip.title;
+            
+            // Build week options
+            weekOptionsContainer.innerHTML = trip.weeks.map((week, index) => {
+                const isFull = week.spots === 0;
+                const isLimited = week.spots === 1;
+                const availText = isFull ? 'Sold Out' : `${week.spots} spot${week.spots > 1 ? 's' : ''} available`;
+                const availClass = isFull ? 'full' : (isLimited ? 'limited' : '');
+                
+                return `
+                    <label class="week-option ${isFull ? 'week-option-full' : ''}" data-week="${week.dates}">
+                        <input type="radio" name="week" value="${week.dates}" ${isFull ? 'disabled' : ''}>
+                        <div class="week-option-content">
+                            <span class="week-dates">${week.dates}</span>
+                            <span class="week-availability ${availClass}">${availText}</span>
+                        </div>
+                    </label>
+                `;
+            }).join('');
+            
+            // Reset button state
+            requestWeekBtn.disabled = true;
+            requestWeekBtn.textContent = 'Select a week above';
+            
+            // Add click handlers to week options
+            document.querySelectorAll('.week-option:not(.week-option-full)').forEach(option => {
+                option.addEventListener('click', () => {
+                    // Remove selected class from all
+                    document.querySelectorAll('.week-option').forEach(o => o.classList.remove('selected'));
+                    // Add to clicked one
+                    option.classList.add('selected');
+                    // Check the radio
+                    option.querySelector('input').checked = true;
+                    // Store selected week
+                    selectedWeek = option.dataset.week;
+                    // Enable button
+                    requestWeekBtn.disabled = false;
+                    requestWeekBtn.textContent = 'Request This Week →';
+                });
+            });
+            
+            // Show popup
+            weekPopupOverlay.style.display = 'flex';
+        });
+    });
 
-    // --- Request a Call Popup --- //
+    // Close week popup
+    function closeWeekPopup() {
+        weekPopupOverlay.style.display = 'none';
+    }
+    
+    if (closeWeekPopupBtn) {
+        closeWeekPopupBtn.addEventListener('click', closeWeekPopup);
+    }
+    
+    if (weekPopupOverlay) {
+        weekPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === weekPopupOverlay) {
+                closeWeekPopup();
+            }
+        });
+    }
+
+    // Handle "Request This Week" button -> Open Week Form Popup
+    if (requestWeekBtn) {
+        requestWeekBtn.addEventListener('click', () => {
+            if (!selectedWeek) return;
+            
+            // Close week selection popup
+            closeWeekPopup();
+            
+            // Set the summary and hidden fields
+            weekFormSummary.textContent = `${selectedTrip} — ${selectedWeek}`;
+            weekFormTripInput.value = selectedTrip;
+            weekFormWeekInput.value = selectedWeek;
+            
+            // Open week form popup
+            weekFormPopupOverlay.style.display = 'flex';
+        });
+    }
+
+    // Close week form popup
+    function closeWeekFormPopup() {
+        weekFormPopupOverlay.style.display = 'none';
+        weekRequestForm.style.display = 'block';
+        weekFormSuccessMessage.style.display = 'none';
+        weekRequestForm.reset();
+        selectedTrip = null;
+        selectedWeek = null;
+    }
+
+    if (closeWeekFormPopupBtn) {
+        closeWeekFormPopupBtn.addEventListener('click', closeWeekFormPopup);
+    }
+
+    if (weekFormPopupOverlay) {
+        weekFormPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === weekFormPopupOverlay) {
+                closeWeekFormPopup();
+            }
+        });
+    }
+
+    // Handle week request form submission
+    if (weekRequestForm) {
+        weekRequestForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleFormSubmit(weekRequestForm, weekFormSuccessMessage);
+        });
+    }
+
+    // --- Request a Call Popup (General / Flexible Dates) --- //
     const requestCallPopupOverlay = document.getElementById('request-call-popup-overlay');
     const closeRequestCallPopupButton = document.getElementById('close-request-call-popup');
     const requestCallForm = document.getElementById('request-call-form');
     const requestCallButtons = document.querySelectorAll('.request-call-btn');
-    const requestCallSuccessMessage = document.querySelector('#request-call-popup-overlay .success-message');
+    const requestCallSuccessMessage = document.querySelector('#request-call-popup .success-message');
 
     // Open the request a call popup
     requestCallButtons.forEach(button => {
@@ -80,20 +277,28 @@ document.addEventListener('DOMContentLoaded', function() {
         requestCallPopupOverlay.style.display = 'none';
         requestCallForm.style.display = 'block';
         requestCallSuccessMessage.style.display = 'none';
+        requestCallForm.reset();
     }
 
-    closeRequestCallPopupButton.addEventListener('click', closeRequestCallPopup);
-    requestCallPopupOverlay.addEventListener('click', (e) => {
-        if (e.target === requestCallPopupOverlay) {
-            closeRequestCallPopup();
-        }
-    });
+    if (closeRequestCallPopupButton) {
+        closeRequestCallPopupButton.addEventListener('click', closeRequestCallPopup);
+    }
+
+    if (requestCallPopupOverlay) {
+        requestCallPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === requestCallPopupOverlay) {
+                closeRequestCallPopup();
+            }
+        });
+    }
 
     // Handle request a call form submission
-    requestCallForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        await handleFormSubmit(requestCallForm, requestCallSuccessMessage);
-    });
+    if (requestCallForm) {
+        requestCallForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await handleFormSubmit(requestCallForm, requestCallSuccessMessage);
+        });
+    }
 
     // --- Cookie Consent --- //
     const cookieBanner = document.getElementById('cookie-consent-banner');
