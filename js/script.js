@@ -75,10 +75,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // --- Contact Validation --- //
+    function isValidEmail(value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(value);
+    }
+
+    function isValidWhatsApp(value) {
+        // Remove spaces, dashes, parentheses, and plus sign for validation
+        const cleaned = value.replace(/[\s\-\(\)\+]/g, '');
+        // Should be 7-15 digits (international phone number range)
+        return /^\d{7,15}$/.test(cleaned);
+    }
+
+    function isValidContact(value) {
+        return isValidEmail(value) || isValidWhatsApp(value);
+    }
+
+    function setupContactValidation(inputId) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+
+        input.addEventListener('blur', function() {
+            const value = this.value.trim();
+            if (value && !isValidContact(value)) {
+                this.setCustomValidity('Please enter a valid email address or WhatsApp number');
+                this.reportValidity();
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        input.addEventListener('input', function() {
+            this.setCustomValidity('');
+        });
+    }
+
+    // Apply validation to contact fields
+    setupContactValidation('call-contact');
+    setupContactValidation('week-contact');
+
     // --- Form Submit Handler --- //
-    async function handleFormSubmit(form, successMessage) {
+    async function handleFormSubmit(form, popup) {
         const submitButton = form.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
+        const successMessage = popup.querySelector('.success-message');
+        
+        // Get the title and subtitle to hide on success
+        const popupTitle = popup.querySelector('h2');
+        const popupSubtitle = popup.querySelector('.popup-subtitle');
         
         try {
             submitButton.disabled = true;
@@ -94,7 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 form.style.display = 'none';
-                successMessage.style.display = 'block';
+                if (popupTitle) popupTitle.style.display = 'none';
+                if (popupSubtitle) popupSubtitle.style.display = 'none';
+                if (successMessage) successMessage.style.display = 'block';
             } else {
                 submitButton.disabled = false;
                 submitButton.textContent = originalText;
@@ -229,10 +276,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close week form popup
     function closeWeekFormPopup() {
-        weekFormPopupOverlay.style.display = 'none';
-        weekRequestForm.style.display = 'block';
-        weekFormSuccessMessage.style.display = 'none';
-        weekRequestForm.reset();
+        const popup = document.getElementById('week-form-popup');
+        const successMessage = popup ? popup.querySelector('.success-message') : null;
+        if (weekFormPopupOverlay) weekFormPopupOverlay.style.display = 'none';
+        if (weekRequestForm) weekRequestForm.style.display = 'block';
+        if (successMessage) successMessage.style.display = 'none';
+        // Restore title and subtitle
+        const title = popup ? popup.querySelector('h2') : null;
+        const subtitle = popup ? popup.querySelector('.popup-subtitle') : null;
+        if (title) title.style.display = 'block';
+        if (subtitle) subtitle.style.display = 'block';
+        if (weekRequestForm) weekRequestForm.reset();
         selectedTrip = null;
         selectedWeek = null;
     }
@@ -253,8 +307,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (weekRequestForm) {
         weekRequestForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            await handleFormSubmit(weekRequestForm, weekFormSuccessMessage);
+            const popup = document.getElementById('week-form-popup');
+            await handleFormSubmit(weekRequestForm, popup);
         });
+    }
+
+    // Add close button handler for week form success
+    const weekFormCloseSuccessBtn = document.querySelector('#week-form-popup .close-success-btn');
+    if (weekFormCloseSuccessBtn) {
+        weekFormCloseSuccessBtn.addEventListener('click', closeWeekFormPopup);
     }
 
     // --- Request a Call Popup (General / Flexible Dates) --- //
@@ -263,21 +324,60 @@ document.addEventListener('DOMContentLoaded', function() {
     const requestCallForm = document.getElementById('request-call-form');
     const requestCallButtons = document.querySelectorAll('.request-call-btn');
     const requestCallSuccessMessage = document.querySelector('#request-call-popup .success-message');
+    const callInterestSelect = document.getElementById('call-interest');
+    const callInterestOptional = callInterestSelect ? callInterestSelect.closest('.form-group').querySelector('.optional') : null;
+
+    // Map trip IDs to dropdown values
+    const tripToInterest = {
+        'france': 'France',
+        'portugal': 'Portugal',
+        'morocco_dec': 'Morocco December',
+        'morocco_jan': 'Morocco January'
+    };
 
     // Open the request a call popup
     requestCallButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
+            
+            // Check if button is inside a product card
+            const card = button.closest('.experience-card');
+            if (card && callInterestSelect) {
+                const tripId = card.dataset.trip;
+                const interestValue = tripToInterest[tripId];
+                if (interestValue) {
+                    callInterestSelect.value = interestValue;
+                    callInterestSelect.disabled = true;
+                    // Hide (optional) label when pre-selected
+                    if (callInterestOptional) callInterestOptional.style.display = 'none';
+                }
+            } else if (callInterestSelect) {
+                // Reset for general "Schedule a conversation" button
+                callInterestSelect.value = '';
+                callInterestSelect.disabled = false;
+                // Show (optional) label
+                if (callInterestOptional) callInterestOptional.style.display = 'inline';
+            }
+            
             requestCallPopupOverlay.style.display = 'flex';
         });
     });
 
     // Close the request a call popup
     function closeRequestCallPopup() {
-        requestCallPopupOverlay.style.display = 'none';
-        requestCallForm.style.display = 'block';
-        requestCallSuccessMessage.style.display = 'none';
-        requestCallForm.reset();
+        const popup = document.getElementById('request-call-popup');
+        if (requestCallPopupOverlay) requestCallPopupOverlay.style.display = 'none';
+        if (requestCallForm) requestCallForm.style.display = 'block';
+        if (requestCallSuccessMessage) requestCallSuccessMessage.style.display = 'none';
+        // Restore title and subtitle
+        const title = popup.querySelector('h2');
+        const subtitle = popup.querySelector('.popup-subtitle');
+        if (title) title.style.display = 'block';
+        if (subtitle) subtitle.style.display = 'block';
+        if (requestCallForm) requestCallForm.reset();
+        // Re-enable the destination dropdown and show (optional) label
+        if (callInterestSelect) callInterestSelect.disabled = false;
+        if (callInterestOptional) callInterestOptional.style.display = 'inline';
     }
 
     if (closeRequestCallPopupButton) {
@@ -296,8 +396,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (requestCallForm) {
         requestCallForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            await handleFormSubmit(requestCallForm, requestCallSuccessMessage);
+            const popup = document.getElementById('request-call-popup');
+            await handleFormSubmit(requestCallForm, popup);
         });
+    }
+
+    // Add close button handler for request call success
+    const requestCallCloseSuccessBtn = document.querySelector('#request-call-popup .close-success-btn');
+    if (requestCallCloseSuccessBtn) {
+        requestCallCloseSuccessBtn.addEventListener('click', closeRequestCallPopup);
     }
 
     // --- Cookie Consent --- //
