@@ -757,8 +757,11 @@ section {
 }
 
 .testimonial-flag {
-    font-size: 1.125rem;
-    margin-right: 0.25rem;
+    width: 20px;
+    height: 15px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+    border-radius: 2px;
 }
 
 @media (max-width: 768px) {
