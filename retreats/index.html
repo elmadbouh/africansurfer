@@ -55,7 +55,7 @@
           rgba(20, 15, 10, 0.10) 70%,
           rgba(20, 15, 10, 0.05) 100%
         ),
-        url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80')
+        url('./front.jpeg')
         center center / cover no-repeat;
       display: flex;
       flex-direction: column;
@@ -188,7 +188,7 @@
     /* ── Section: Intro ── */
     .back-header {
       text-align: center;
-      margin-bottom: 4mm;
+      margin-bottom: 3mm;
     }
 
     .back-title {
@@ -204,11 +204,11 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
       font-size: 7.8pt;
-      line-height: 1.7;
+      line-height: 1.6;
       color: #444;
       text-align: center;
       max-width: 110mm;
-      margin: 3mm auto 5mm auto;
+      margin: 2mm auto 4mm auto;
     }
 
     .back-intro em {
@@ -221,12 +221,12 @@
     .photo-strip {
       display: flex;
       gap: 3mm;
-      margin-bottom: 5mm;
+      margin-bottom: 4mm;
     }
 
     .photo-strip .photo-card {
       flex: 1;
-      height: 28mm;
+      height: 25mm;
       border-radius: 3mm;
       overflow: hidden;
       border: 0.6mm solid var(--gold);
@@ -263,7 +263,7 @@
       font-size: 7pt;
       color: var(--terracotta);
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 1.5px;
       margin-bottom: 2.5mm;
       display: flex;
       align-items: center;
@@ -278,7 +278,7 @@
 
     .inclusions-list {
       list-style: none;
-      margin-bottom: 4.5mm;
+      margin-bottom: 3.5mm;
       columns: 1;
     }
 
@@ -286,9 +286,9 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
       font-size: 7pt;
-      line-height: 1.55;
+      line-height: 1.45;
       color: var(--dark);
-      padding: 0.6mm 0;
+      padding: 0.5mm 0;
       padding-left: 4mm;
       position: relative;
     }
@@ -305,8 +305,8 @@
     .price-block {
       background: var(--sand);
       border-radius: 3mm;
-      padding: 3.5mm 5mm;
-      margin-bottom: 4mm;
+      padding: 3mm 5mm;
+      margin-bottom: 3mm;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -347,16 +347,24 @@
     }
 
     /* ── Section: Quote ── */
-    .quote-block {
+    .quotes-row {
       display: flex;
+      gap: 3mm;
+      margin-bottom: 3mm;
+    }
+
+    .quote-block {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 3.5mm;
-      margin-bottom: 4.5mm;
+      text-align: center;
+      gap: 2mm;
     }
 
     .quote-avatar {
-      width: 16mm;
-      height: 16mm;
+      width: 14mm;
+      height: 14mm;
       border-radius: 50%;
       overflow: hidden;
       border: 0.5mm solid var(--gold);
@@ -372,8 +380,8 @@
     .quote-text {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 8pt;
-      line-height: 1.5;
+      font-size: 7.5pt;
+      line-height: 1.45;
       color: #444;
     }
 
@@ -383,17 +391,17 @@
       font-size: 6pt;
       color: var(--gold);
       margin-top: 1mm;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     /* ── Section: Contact Footer ── */
     .contact-bar {
       background: var(--teal);
       margin: auto -11mm 0 -11mm;
-      padding: 5mm 8mm;
+      padding: 2mm 5mm;
       display: flex;
       align-items: center;
-      gap: 4mm;
+      gap: 2mm;
       color: var(--off-white);
     }
 
@@ -403,18 +411,18 @@
       transform: rotate(180deg);
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: 5.5pt;
-      letter-spacing: 3px;
+      font-size: 5pt;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
       flex-shrink: 0;
     }
 
     .contact-qr {
-      width: 18mm;
-      height: 18mm;
+      width: 12mm;
+      height: 12mm;
       background: white;
-      border-radius: 2mm;
+      border-radius: 1.5mm;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -436,32 +444,33 @@
     .contact-details p {
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      font-size: 6.5pt;
-      line-height: 1.7;
+      font-size: 5.5pt;
+      line-height: 1.5;
       color: var(--sand);
     }
 
     .contact-details .website {
       font-weight: 600;
-      font-size: 7.5pt;
+      font-size: 6.5pt;
       color: var(--off-white);
-      margin-bottom: 0.5mm;
+      margin-bottom: 0.3mm;
     }
 
     .contact-logo {
       flex-shrink: 0;
       text-align: center;
+      margin-right: 2mm;
     }
 
     .contact-logo .logo-placeholder-sm {
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: 5pt;
-      letter-spacing: 2px;
+      font-size: 4.5pt;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--gold);
       border: 0.4px solid var(--gold);
-      padding: 1.5mm 2.5mm;
+      padding: 1mm 2mm;
       border-radius: 1.5px;
       opacity: 0.8;
     }
@@ -478,15 +487,49 @@
     }
 
     /* ───────── PRINT STYLES ───────── */
+    @page {
+      size: 148mm 210mm;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
     @media print {
-      body {
+      html, body {
+        width: 148mm;
+        height: auto;
+        margin: 0 !important;
+        padding: 0 !important;
         background: none;
-        padding: 0;
-        gap: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      body {
+        display: block;
       }
       .page {
+        width: 148mm;
+        height: 210mm;
+        margin: 0 !important;
         box-shadow: none;
         page-break-after: always;
+        page-break-inside: avoid;
+        break-after: page;
+        break-inside: avoid;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      .front {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      /* Contact details more visible on teal background */
+      .contact-details p {
+        color: #FFFFFF !important;
+        opacity: 1 !important;
       }
       .page-label {
         display: none;
@@ -514,7 +557,7 @@
 
       <hr class="divider-line">
 
-      <p class="front-date">12. – 19. Oktober 2025</p>
+      <p class="front-date">14. – 21. November 2026</p>
 
       <p class="front-exclusive">7 Tage · Kleine Gruppe · Max. 8 Teilnehmerinnen</p>
 
@@ -548,21 +591,21 @@
     <div class="photo-strip">
       <div class="photo-card">
         <img
-          src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500&q=75"
+          src="./yoga.jpeg"
           alt="Yoga Session"
         >
         <span class="photo-label">Yoga</span>
       </div>
       <div class="photo-card">
         <img
-          src="https://images.unsplash.com/photo-1502680390548-bdbac40e4a9f?w=500&q=75"
+          src="./surf.jpg"
           alt="Surf Session"
         >
         <span class="photo-label">Surf</span>
       </div>
       <div class="photo-card">
         <img
-          src="https://images.unsplash.com/photo-1553522991-71439aa62779?w=500&q=75"
+          src="./essaouira.jpg"
           alt="Essaouira Medina"
         >
         <span class="photo-label">Kultur</span>
@@ -578,8 +621,8 @@
       <li>Komplette Surfausrüstung inklusive</li>
       <li>Gesundes Frühstück &amp; marokkanisches Dinner</li>
       <li>Hammam-Erlebnis mit traditionellem Arganöl-Ritual</li>
-      <li>Medina-Ausflug &amp; marokkanischer Kochworkshop</li>
-      <li>Flughafentransfer Essaouira</li>
+      <li>Marrakech und Essaouira Medina-Ausflug</li>
+      <li>Flughafentransfer Marrakech (RAK)</li>
     </ul>
 
     <!-- Pricing -->
@@ -592,21 +635,41 @@
       <p class="price-early">✦ Aktuell Lufthansa Direktflug Preis Hin-u-Zür — !!! 250 !!! €</p>
     </div>
 
-    <!-- Quote -->
-    <div class="quote-block">
-      <div class="quote-avatar">
-        <img
-          src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=200&q=75"
-          alt="Dein Guide"
-        >
+    <!-- Quotes Side by Side -->
+    <div class="quotes-row">
+      <!-- Quote Surf-->
+      <div class="quote-block">
+        <div class="quote-avatar">
+          <img
+            src="https://african-surfer.com/img/Profile.jpg"
+            alt="Dein Suf Guide"
+          >
+        </div>
+        <div>
+          <p class="quote-text">
+            »Ich zeige dir das Surfen so, wie ich es liebe:
+            ohne Druck, mit Freude — und mit dem besten
+            Sonnenuntergang Afrikas.«
+          </p>
+          <p class="quote-author">— Didi · @african.surfer</p>
+        </div>
       </div>
-      <div>
-        <p class="quote-text">
-          »Ich zeige dir das Surfen so, wie ich es liebe:
-          ohne Druck, mit Freude — und mit dem besten
-          Sonnenuntergang Afrikas.«
-        </p>
-        <p class="quote-author">— Dein Name · African Surfer</p>
+      <!-- Quote Yoga-->
+      <div class="quote-block">
+        <div class="quote-avatar">
+          <img
+            src="https://african-surfer.com/img/Profile_yoga.jpg"
+            alt="Deine Yoga Lehrerin"
+          >
+        </div>
+        <div>
+          <p class="quote-text">
+            »Yoga am Meer ist pure Magie — der Wind, das
+            Rauschen der Wellen und du auf deiner Matte.
+            Hier findest du zurück zu dir.«
+          </p>
+          <p class="quote-author">— Kerstin · @supyoga.coach.frankfurt</p>
+        </div>
       </div>
     </div>
 
@@ -614,23 +677,34 @@
     <div class="contact-bar">
       <div class="contact-cta">Jetzt Platz sichern</div>
       <div class="contact-qr">
-        <!-- QR Code via API — points to african-surfer.com -->
+        <!-- QR Code via API — points to african-surfer.com/retreats -->
         <img
-          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://african-surfer.com&color=1A5E6B&bgcolor=FFFFFF"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://african-surfer.com/retreats&color=1A5E6B&bgcolor=FFFFFF"
           alt="QR Code"
         >
       </div>
       <div class="contact-details">
         <p class="website">african-surfer.com</p>
         <p>
-          info@african-surfer.com<br>
-          +212 XXX XXX XXX<br>
+          didi@african-surfer.com<br>
+          +49 176 634359<br>
           @african.surfer
         </p>
       </div>
-      <div class="contact-logo">
+      <div class="contact-details">
+        <p class="website">.</p>
+        <p>
+          Kerstin Dudichum<br>
+          +49 163 7353281<br>
+          @supyoga.coach.frankfurt
+        </p>
+      </div>
+      <div >
         <!-- Replace with your white logo -->
-        <span class="logo-placeholder-sm">African<br>Surfer</span>
+        <span class="logo-placeholder-sm"><img
+          src="../img/logo.png"
+          alt="Logo"
+        ></span>
       </div>
     </div>
 
